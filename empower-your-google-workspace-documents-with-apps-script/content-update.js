@@ -56,31 +56,21 @@ function updateLinkedContent() {
 }
 
 function getAllFilesToBeUpdated() {
-    // Two options:
-    // 1. Fetch all files on new execution
-    // 2. If there's a saved state file, use that one as source
     var result = new Array();
-    var state = readState();
 
-    if (state === null) {
-        var pageToken, page;
-        do {
-            var optionalArgs = { corpora: "allDrives", includeItemsFromAllDrives: true, supportsAllDrives: true, q: driveListQuery, maxResults: 500, pageToken: pageToken }
-            page = Drive.Files.list(optionalArgs)
-            var allFiles = page.files
+    var pageToken, page;
+    do {
+        var optionalArgs = { corpora: "allDrives", includeItemsFromAllDrives: true, supportsAllDrives: true, q: driveListQuery, maxResults: 500, pageToken: pageToken }
+        page = Drive.Files.list(optionalArgs)
+        var allFiles = page.files
 
-            for (var file in allFiles) {
-                result.push(allFiles[file])
-            }
-
-            pageToken = page.nextPageToken;
+        for (var file in allFiles) {
+            result.push(allFiles[file])
         }
-        while (pageToken);
-    } else {
-        for (var index in state) {
-            result.push(state[index])
-        }
+
+        pageToken = page.nextPageToken;
     }
+    while (pageToken);
 
     console.log(`${result.length} files will be updated`)
 

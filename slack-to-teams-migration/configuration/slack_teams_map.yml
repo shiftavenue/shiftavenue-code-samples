@@ -1,0 +1,5 @@
+name-of-slack-channel:
+  TeamName: Name of the destination Team
+  ChannelName: Name of the destination channel
+  ChannelType: private # possible: private, standard
+  PrimaryOwner: For private channels, add the owner UPN here!

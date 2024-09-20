@@ -288,6 +288,11 @@ foreach ($team in $mappings.Values.TeamName | Sort-Object -Unique) {
             }
         }
 
+        # Skip General channel - it is undocumented, but closing the migration for this channel finalizes the team :)
+        if ($channelResponse.displayName -eq 'General') {
+            continue
+        }
+
         try {
             Invoke-GraphRequest -Query ($uris['TeamChannelMigrationComplete'] -f $teamResponse.id, $channelResponse.id) -Method Post -ErrorAction Stop
         }

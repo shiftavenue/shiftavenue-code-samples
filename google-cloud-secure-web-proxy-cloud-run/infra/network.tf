@@ -1,6 +1,6 @@
 module "vpc_egress" {
   source  = "terraform-google-modules/network/google"
-  version = "~> 9.1"
+  version = "~> 10.0"
 
   project_id   = var.project_id
   network_name = "net-central-egress"
@@ -25,7 +25,7 @@ module "vpc_egress" {
 
 module "vpc_spoke" {
   source  = "terraform-google-modules/network/google"
-  version = "~> 9.1"
+  version = "~> 10.0"
 
   project_id   = var.project_id
   network_name = "net-spoke"
